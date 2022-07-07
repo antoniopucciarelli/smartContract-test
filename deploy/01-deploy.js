@@ -22,7 +22,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         network.name +
         "..."
     );
-
+    
     // contract deployment
     const printoutContract = await deploy("printout", {
       from: deployer,
@@ -30,7 +30,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
       args: [],
     });
 
-    // printing stuff -> not relevant 
+    // printing stuff -> not relevant
     log(
       "\n\t" +
         emojic.whiteCheckMark +
