@@ -23,11 +23,16 @@ async function main() {
   );
   
   // waiting for the contract to be loaded
-  await ethers.getContract("printout", deployer);
+  const printoutContract = await ethers.getContract("printout", deployer);
+
+  // getting smart contract balance 
+  const smartContractAddress = printoutContract.address
+  const smartContractBalance = await ethers.provider.getBalance(smartContractAddress);
+  console.log("🪙" + "  \x1b[35m" + smartContractAddress + "\x1b[37m Smart contract balance: " + smartContractBalance/1e+18 + " ETH");
 
   // setting up new variable
   const addressBalance = await ethers.provider.getBalance(deployer);
-  console.log("🪙" +  "  Account balance: " + addressBalance/1e+18 + " ETH\n");
+  console.log("🪙" + "  \x1b[35m" + deployer + "\x1b[37m Account balance:        " + addressBalance/1e+18 + " ETH\n");
 }
 
 main()
