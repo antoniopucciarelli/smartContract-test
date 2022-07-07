@@ -12,7 +12,7 @@ error printout__NotOwner();
  *  @dev This implement price feed as our library
  */
 contract printout {
-    string public x = "ok!";
+    string public x = "_";
 
     constructor() {}
 
@@ -22,4 +22,21 @@ contract printout {
         console.log("string = %s", x);
         return x;
     }
+
+    function setupVariable(string memory _x) public returns (string memory){
+        console.log("old string = %s", x);
+        x = _x;
+        console.log("new string = %s", x);
+        return x;
+    }
+
+    function paySmartContract() public payable {
+        console.log("The amount sent to this smart contract is: %d wei", msg.value);
+    }
+
+    function getBalance() public view returns(uint256){
+        uint256 addressBalance = address(this).balance;
+        return addressBalance;
+    }
+
 }

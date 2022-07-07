@@ -28,5 +28,8 @@
     "lint:fix": "yarn solhint 'contract/*.sol --fix",
     "format": "yarn prettier --write .",
     "coverage": "yarn hardhat coverage"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
   }
 }
