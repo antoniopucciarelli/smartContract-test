@@ -16,7 +16,7 @@ contract printout {
 
     constructor() {}
 
-    /** @return x -> parameter set globaly 
+    /** @return x -> parameter set globaly
      */
     function printoutFunc() public view returns (string memory) {
         console.log("string = %s", x);
