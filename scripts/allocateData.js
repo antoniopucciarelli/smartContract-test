@@ -2,7 +2,7 @@ const emojic = require("emojic");
 const prompt = require("prompt-sync")();
 const { getNamedAccounts, ethers } = require("hardhat");
 
-/**
+/** 
  * @notice this function runs a function of the printout solidity script on the blockchain -> make it sure the contract has been deployed on the blockchain
  */
 async function main() {

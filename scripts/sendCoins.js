@@ -4,7 +4,8 @@ const { getNamedAccounts, ethers } = require("hardhat");
 
 /**
  * @notice this function runs a function of the printout solidity script on the blockchain -> make it sure the contract has been deployed on the blockchain
- */
+ * @dev this function sends ETH between 2 different accounts on the hardhat blockchain 
+*/
 async function main() {
   const funcName = "sendCoins()";
   const { deployer, user, user1, user2 } = await getNamedAccounts();
@@ -17,17 +18,9 @@ async function main() {
     "\nRunning " +
       "\x1b[31m" +
       funcName +
-      "\x1b[37m \n\n" +
-      emojic.computer +
-      " Deployer address: " +
-      "\x1b[35m" +
-      deployer +
       "\x1b[37m \n" +
       "==============================================================="
   );
-
-  // waiting for the contract to be loaded
-  await ethers.getContract("printout", deployer);
 
   var inputValue = prompt(
     "Type amount of coins you want to send to the Smart Contract (ETH): "
