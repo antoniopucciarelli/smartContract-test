@@ -15,6 +15,9 @@ contract printout {
     string public xOwner = "_"; // this variable can only be changed by the owner of the contract 
     string public x = "_";  // this variable can be changed by anyone 
     address private immutable owner; 
+    
+    address[] public addressList;
+    mapping(address => string) addressFundedList; 
 
     constructor() {
         owner = msg.sender;
@@ -40,7 +43,16 @@ contract printout {
         console.log("old string = %s", x);
         x = _x;
         console.log("new string = %s", x);
+        addressList.push(msg.sender);
+        addressFundedList[msg.sender] = x; 
         return x;
+    }
+
+    function printList() public view {
+        for(uint256 ii = 0; ii < addressList.length; ii = ii + 1){
+            console.log("Address %d : \x1b[35m%s\x1b[37m", ii, addressList[ii]);
+            console.log("\tinput", addressFundedList[addressList[ii]]);
+        }
     }
 
     function setupOwnedVariable(string memory _x) public onlyOwner returns (string memory){
