@@ -1,4 +1,3 @@
-const emojic = require("emojic");
 const { network } = require("hardhat");
 const { developmentChains } = require("../helper-hardhat-config");
 
@@ -14,7 +13,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   // contract deployment
   if (developmentChains.includes(network.name)) {
     log(
-      "\nLocal network detected! -> " +
+      "\nLocal network detected! => " +
         "\x1b[35m" +
         network.name +
         "\x1b[37m" +
@@ -22,7 +21,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         network.name +
         "..."
     );
-    
+
     // contract deployment
     const printoutContract = await deploy("printout", {
       from: deployer,
@@ -33,35 +32,39 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     // printing stuff -> not relevant
     log(
       "\n\t" +
-        emojic.whiteCheckMark +
+        String.fromCodePoint(0x2705) +
         " Contract deployed on " +
         network.name +
         " !"
     );
+
     log(
       "\t" +
-        emojic.computer +
+        String.fromCodePoint(0x1f4bb) +
         " Deployer address: " +
         "\x1b[35m    " +
         deployer +
         "\x1b[37m"
     );
+    
     log(
       "\t" +
-        "📨" +
+        String.fromCodePoint(0x1f4e8) +
         " Contract deployed at: " +
         "\x1b[35m" +
         printoutContract.address +
         "\x1b[37m\n"
     );
+    
     log(
       "\t" +
-        emojic.exclamation +
+        String.fromCodePoint(0x2755) +
         " You are deploying to a local network, you'll need a local network running to interact"
     );
+    
     log(
       "\t" +
-        emojic.exclamation +
+        String.fromCodePoint(0x2755) +
         " Please run `npx hardhat console` to interact with the deployed smart contracts! \n"
     );
   }

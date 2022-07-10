@@ -49,9 +49,11 @@ contract printout {
     }
 
     function printList() public view {
+        console.log("List of interactions");
         for(uint256 ii = 0; ii < addressList.length; ii = ii + 1){
-            console.log("Address %d : \x1b[35m%s\x1b[37m", ii, addressList[ii]);
-            console.log("\tinput", addressFundedList[addressList[ii]]);
+            console.log("Interaction %d", ii);
+            console.log("\taddress: \x1b[35m%s\x1b[37m", addressList[ii]);
+            console.log("\tinput  : %s", addressFundedList[addressList[ii]]);
         }
     }
 
@@ -64,6 +66,21 @@ contract printout {
 
     function paySmartContract() public payable {
         console.log("The amount sent to this smart contract is: %d wei", msg.value);
+    }
+
+    function withdrawContract() public payable onlyOwner {
+        console.log("Withdrawing funds");
+        for(uint256 ii = 0; ii < addressList.length; ii = ii + 1){
+            // setting up address balance to 0
+            addressFundedList[addressList[ii]] = "0";
+        }
+
+        addressList = new address[](0);
+    
+        (bool callSuccess, ) = payable(msg.sender).call{
+            value: address(this).balance
+        }("");
+        require(callSuccess, "Call failed");
     }
 
     function getBalance() public view returns(uint256){
